@@ -1,0 +1,32 @@
+# POETRY CONFIG
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "easyTemplateLib"
+version = "0.0.1"
+description = "Template for easyScience libraries"
+license = "GPL-3.0-only"
+authors = ["Andrew Sazonov", "Simon Ward"]
+readme = "README.md"
+homepage = "https://github.com/easyScience/easyTemplateLib"
+documentation = "https://github.com/easyScience/easyTemplateLib"
+include = ["CHANGELOG.md"]
+packages = [ { include = "easyTemplateLib" } ]
+
+[tool.poetry.dependencies]
+python = "^3.6, <3.9" # "^3.8" generates error when installing PySide2 in easyAppGui
+# easyScience
+easyCore = { git = "https://github.com/easyScience/easyCore.git", rev = "fitting_refactor" }
+# Misc
+pint = "^0.14"
+bumps = "^0.7"
+lmfit = "^1.0"
+
+[tool.poetry.dev-dependencies]
+#easyCore = { path = "../easyCore/" }
+pytest = "^5.2"
+
+# CUSTOM CONFIG
