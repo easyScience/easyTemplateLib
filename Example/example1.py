@@ -5,8 +5,8 @@ import numpy as np
 
 from easyCore.Fitting.Fitting import Fitter
 
-from easyTemplateLib.Example.interface import InterfaceFactory
-from easyTemplateLib.Example.interface import Line
+from Example1.interface import InterfaceFactory
+from Example1.Line import Line
 
 # This is a much more complex case where we have calculators, interfaces, interface factory and an
 # inherited object (from `BaseObj`). In this case the Line class is available with/without an interface

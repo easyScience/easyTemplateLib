@@ -3,8 +3,8 @@ __version__ = "0.0.1"
 
 import numpy as np
 
-from easyTemplateLib.Example.Interfaces.interfaceTemplate import InterfaceTemplate
-from easyTemplateLib.Example.Calculators.calculator2 import Calculator2
+from Example1.Interfaces.interfaceTemplate import InterfaceTemplate
+from Example1.Calculators.calculator2 import Calculator2
 
 
 class Interface2(InterfaceTemplate):

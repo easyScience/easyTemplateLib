@@ -3,17 +3,22 @@ __version__ = "0.0.1"
 
 import numpy as np
 
-from easyTemplateLib.Example.Interfaces.interfaceTemplate import InterfaceTemplate
-from easyTemplateLib.Example.Calculators.calculator1 import Calculator1
+from Example1.Interfaces.interfaceTemplate import InterfaceTemplate
+from Example1.Calculators.calculator2 import Calculator2
 
 
-class Interface1(InterfaceTemplate):
+class Interface2(InterfaceTemplate):
     """
-    A simple example interface using Calculator1
+    This is a more complex template. Here we need to export_data data,
+    transfer it to the calculator (get and calculate) and import data
+    from the calculator (set)
     """
     def __init__(self):
-        # This interface will use calculator1
-        self.calculator = Calculator1()
+        """
+        Set up a calculator and a local dict
+        """
+        self.calculator = Calculator2()
+        self._data: dict = {}
 
     def get_value(self, value_label: str) -> float:
         """
@@ -24,7 +29,8 @@ class Interface1(InterfaceTemplate):
         :return: associated value
         :rtype: float
         """
-        return getattr(self.calculator, value_label, None)
+        self._data = json.loads(self.calculator.export_data())
+        return getattr(self._data, value_label, None)
 
     def set_value(self, value_label: str, value: float):
         """
@@ -38,8 +44,11 @@ class Interface1(InterfaceTemplate):
         :rtype: noneType
         """
         if self._borg.debug:
-            print(f'Interface1: Value of {value_label} set to {value}')
-        setattr(self.calculator, value_label, value)
+            print(f'Interface2: Value of {value_label} set to {value}')
+        self._data = json.loads(self.calculator.export_data())
+        if value_label in self._data.keys():
+            self._data[value_label] = value
+        self.calculator.import_data(json.dumps(self._data))
 
     def fit_func(self, x_array: np.ndarray) -> np.ndarray:
         """
